@@ -131,13 +131,13 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3505299483183199886}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -148,7 +148,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6563902468704064480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0446b2e1b479e0742a14d7ee4e064a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  m_speed: 125
+  m_acceleration: 20
+  m_airAcceleration: 5
+  m_grabForce: 40
   offWall: 0
 --- !u!114 &4920693248833867312
 MonoBehaviour:
@@ -192,7 +195,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6563902468704064480}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnMove
+        m_MethodName: OnMoveInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -204,14 +207,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 88dbece2-43d5-485d-8f58-20f9ab54fe26
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 95b8aa40-43dc-4ea4-b9e5-214cdcd9c2ca
-    m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 481b3e03-fdbd-4abc-98b7-4eb6f86b554f
-    m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 8abd6b3f-7b3c-4f99-8bcc-c1120d7b86db
@@ -256,6 +251,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: db85ce22-363f-44ce-886d-d4b4ab7ba256
     m_ActionName: Player/Join[/Keyboard/space,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6563902468704064480}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnJumpInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ad73ba73-824b-49dd-b4bb-3dad4a9cdf0c
+    m_ActionName: Player/Jump[/Keyboard/ctrl,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6563902468704064480}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnGrabInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 797d6170-6c77-4e07-8f20-91f2d932cc4f
+    m_ActionName: Player/Grab[/Keyboard/space,/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
