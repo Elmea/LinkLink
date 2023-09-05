@@ -14,12 +14,13 @@ public class Rope : MonoBehaviour
     [SerializeField] private int segmentCount = 20;
     private List<GameObject> ropeSegments = new List<GameObject>();
     private bool firstFrame = true;
+    Vector3 holder;
     
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 holder = secondAncor.transform.position;
-
+        holder = secondAncor.transform.position;
+        
         Vector3 startPos = firstAncor.transform.position;
 
         for (int i = 0; i < segmentCount; i++)
@@ -58,6 +59,16 @@ public class Rope : MonoBehaviour
             }
 
             joints[1].connectedBody = ropeSegments[i + 1].GetComponent<Rigidbody2D>();
+        }
+    }
+
+    private void Update()
+    {
+        if (firstFrame)
+        {
+            firstAncor.GetComponent<HingeJoint2D>().autoConfigureConnectedAnchor = true;
+            secondAncor.GetComponent<HingeJoint2D>().autoConfigureConnectedAnchor = true;
+            secondAncor.transform.position = holder;
         }
     }
 }
