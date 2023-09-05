@@ -5,10 +5,10 @@ using Vector2 = UnityEngine.Vector2;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float m_speed = 100f;
-    [SerializeField] private float m_acceleration = 50f;
-    [SerializeField] private float m_airAcceleration = 20f;
-    [SerializeField] private float m_grabForce = 50f;
+    [SerializeField] private float m_speed = 125f;
+    [SerializeField] private float m_acceleration = 20f;
+    [SerializeField] private float m_airAcceleration = 5f;
+    [SerializeField] private float m_grabForce = 40f;
     private Vector3 m_velocity;
     private Vector2 m_moveInputValue;
     private Rigidbody2D body;
