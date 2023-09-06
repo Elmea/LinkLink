@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
     {
         m_velocity = Vector2.MoveTowards(m_velocity, m_moveInputValue * m_speed * Time.fixedDeltaTime, m_acceleration * Time.fixedDeltaTime);
 
-        m_velocity = m_moveInputValue * m_speed * Time.fixedDeltaTime;
         transform.position += m_velocity * Time.fixedDeltaTime;
 
         if(offWall)
