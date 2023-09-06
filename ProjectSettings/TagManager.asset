@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Gap
+  - SlowDown
+  - Slip
+  - Slippery
   layers:
   - Default
   - TransparentFX
