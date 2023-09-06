@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6390929377668673047}
   - component: {fileID: 9204348625770778296}
+  - component: {fileID: 7326497284906528380}
   m_Layer: 0
   m_Name: PlayersManager
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9204348625770778296
 MonoBehaviour:
@@ -76,3 +77,15 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &7326497284906528380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554240506486527199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df0ddc85723a0e43a5b0b8f9d9a414f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

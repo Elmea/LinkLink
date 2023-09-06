@@ -1,6 +1,8 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using static UnityEngine.InputSystem.InputAction;
 using Vector2 = UnityEngine.Vector2;
 
@@ -16,14 +18,20 @@ public class Player : MonoBehaviour
     private Rigidbody2D body;
     private PlayerInput m_playerInput;
     [SerializeField] private bool offWall = false;
+    private bool grabbing = false;
 
     private Action m_doAction;
-    
+    private Rope linkedRope; 
+    private Vector3 grabPos;
+    private CapsuleCollider2D myCollider;
+    private CapsuleCollider2D teamMateCollider;
+
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         m_doAction = DoMoveOnWall;
+        myCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
 
     public void Init(PlayerInput pPlayerInput)
@@ -37,6 +45,16 @@ public class Player : MonoBehaviour
         pPlayerInput.actions.FindAction("Grab").performed += OnGrabInput;
     }
 
+    public void LinkRope(Rope ropeTOLink)
+    {
+        linkedRope = ropeTOLink;
+    }
+    
+    public void SetTeamMateCollider(CapsuleCollider2D _teamMateCollider)
+    {
+        teamMateCollider = _teamMateCollider;
+    }
+    
     private void ResetPlayerInput()
     {
         if(m_playerInput == null)
@@ -59,27 +77,27 @@ public class Player : MonoBehaviour
 
     private void DoMoveOnWall()
     {
+        if (offWall)
+        {
+            m_doAction = DoFall;
+            return;
+        }
+        
         m_velocity = Vector2.MoveTowards(m_velocity, m_moveInputValue * m_speed * Time.fixedDeltaTime, m_acceleration * Time.fixedDeltaTime);
 
         body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
 
-        if(offWall)
-            m_doAction = DoFall;
     }
 
     private void DoGrab()
     {
-        m_velocity = Vector2.MoveTowards(m_velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
-
+        m_velocity = Vector2.MoveTowards(body.velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
         body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
     }
 
     private void DoFall()
     {
-        m_velocity.y += WorldSettings.gravity.y * Time.fixedDeltaTime;
-        m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_moveInputValue.x * m_speed * Time.fixedDeltaTime, m_airAcceleration * Time.fixedDeltaTime);
-
-        body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+        body.gravityScale = 1;
     }
 
     // Unity event called by new input system
@@ -90,19 +108,36 @@ public class Player : MonoBehaviour
 
     public void OnJumpInput(CallbackContext ctx)
     {
-        if(ctx.performed && !offWall)
+        if (ctx.performed && !offWall)
+        {
             offWall = true;
+            grabbing = false;
+            body.gravityScale = 1;
+            Physics2D.IgnoreCollision(myCollider, teamMateCollider, true);
+
+            if (linkedRope.IsInTension())
+            {
+                linkedRope.ReleaseTenseOnThisAncor(this.gameObject);
+            }
+        }
     }
 
     public void OnGrabInput(CallbackContext ctx)
     {
         if(ctx.performed)
         {
+            if (offWall)
+                Physics2D.IgnoreCollision(myCollider, teamMateCollider, false);
+            
+            body.gravityScale = 0;
             offWall = false;
             m_doAction = DoGrab;
+            grabbing = true;
+            grabPos = transform.position;
         }
         else if(ctx.canceled)
         {
+            grabbing = false;
             if(offWall)
                 m_doAction = DoFall;
             else
@@ -122,5 +157,18 @@ public class Player : MonoBehaviour
         Debug.Log("Player " + m_playerInput.playerIndex + " disabled");
 
         m_playerInput = null;
+    }
+
+    private void Update()
+    {
+        if (grabbing)
+        {
+            if (m_velocity.magnitude < 0.1f)
+            {
+                body.velocity = new Vector2(0, 0);
+                m_velocity = new Vector2(0, 0);
+                transform.position = grabPos;
+            }
+        }
     }
 }
