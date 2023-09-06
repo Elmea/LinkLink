@@ -9,8 +9,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float m_acceleration = 20f;
     [SerializeField] private float m_airAcceleration = 5f;
     [SerializeField] private float m_grabForce = 40f;
-    private Vector3 m_velocity;
+    private Vector2 m_velocity;
     private Vector2 m_moveInputValue;
+    private Vector2 m_position2D;
     private Rigidbody2D body;
     [SerializeField] private bool offWall = false;
 
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        m_position2D = transform.position;
         m_doAction();
     }
 
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour
     {
         m_velocity = Vector2.MoveTowards(m_velocity, m_moveInputValue * m_speed * Time.fixedDeltaTime, m_acceleration * Time.fixedDeltaTime);
 
-        transform.position += m_velocity * Time.fixedDeltaTime;
+        body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
 
         if(offWall)
             m_doAction = DoFall;
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
     {
         m_velocity = Vector2.MoveTowards(m_velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
 
-        transform.position += m_velocity * Time.fixedDeltaTime;
+        body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
     }
 
     private void DoFall()
@@ -54,7 +56,7 @@ public class Player : MonoBehaviour
         m_velocity.y += WorldSettings.gravity.y * Time.fixedDeltaTime;
         m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_moveInputValue.x * m_speed * Time.fixedDeltaTime, m_airAcceleration * Time.fixedDeltaTime);
 
-        transform.position += m_velocity * Time.fixedDeltaTime;
+        body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
     }
 
     // Unity event called by new input system
