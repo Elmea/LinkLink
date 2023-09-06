@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
 
             body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
 
-            if(m_slipTimer >= m_slippingDuration || m_isGrabbing)
+            if(m_isGrabbing)
             {
                 m_slipTimer = 0f;
                 m_isSlipping = false;
