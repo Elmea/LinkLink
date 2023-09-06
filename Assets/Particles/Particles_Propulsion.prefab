@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2047224787247058823}
   - component: {fileID: 7179772298184857468}
   m_Layer: 0
-  m_Name: CFX3_Hit_SmokePuff
+  m_Name: Particles_Propulsion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
