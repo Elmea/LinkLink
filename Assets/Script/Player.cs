@@ -16,9 +16,12 @@ public class Player : MonoBehaviour
     [SerializeField][Range(0, 1)] private float m_honeySlowDownFactor = 0.5f;
     [SerializeField][Tooltip("La vitesse de glisse")] private float m_slippingSpeed = 200f;
     [SerializeField][Tooltip("l'acceleration de la glisse")] private float m_slippingAcceleration = 20f;
-    [SerializeField][Tooltip("Reduit la force de grab")] private float m_grabForceReductionOnSlip = 0.3f;
-    [SerializeField][Tooltip("Le player glisse tout les x sec")] private float m_slippingDelay = 1f;
+    [SerializeField][Range(0,1), Tooltip("Reduit la force de grab")] private float m_grabForceReductionOnSlip = 0.3f;
+    [SerializeField][Tooltip("Le player glisse toutes les x sec")] private float m_slippingDelay = 1f;
     [SerializeField][Tooltip("Le player glisse pendant x sec")] private float m_slippingDuration = 0.5f;
+
+    [Header("Animator")]
+    [SerializeField] private Animator m_animator;
 
 
     private float m_defaultSpeed;
