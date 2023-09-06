@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 645611200915328606}
   - component: {fileID: 5970669937008357242}
   m_Layer: 0
-  m_Name: TriggerEvent
+  m_Name: TriggerCollider
   m_TagString: SlowDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
