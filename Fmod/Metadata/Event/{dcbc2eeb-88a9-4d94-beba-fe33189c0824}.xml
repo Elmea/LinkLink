@@ -92,6 +92,9 @@
 		</relationship>
 	</object>
 	<object class="GroupTrack" id="{ff01075d-7365-4bfd-9d3b-93f3736daeab}">
+		<relationship name="modules">
+			<destination>{1059a6b5-2c94-4f93-8175-586d2ad233db}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{62ae269b-7304-4707-b5a4-0d4593cc8b3f}</destination>
 		</relationship>
@@ -107,6 +110,7 @@
 			<destination>{71ae84ad-f337-4082-b2da-4d486d012af8}</destination>
 			<destination>{49c34df9-d80b-4078-a684-00441dfb2597}</destination>
 			<destination>{893d8c74-970e-441f-ba3a-57342ff90363}</destination>
+			<destination>{1059a6b5-2c94-4f93-8175-586d2ad233db}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{de123855-d5f3-4fc1-972c-fa44a491ff55}</destination>
@@ -291,7 +295,24 @@
 			<destination>{1e567598-b8ba-418b-b1a1-19250d4e44a6}</destination>
 		</relationship>
 	</object>
+	<object class="SingleSound" id="{1059a6b5-2c94-4f93-8175-586d2ad233db}">
+		<property name="isAsync">
+			<value>true</value>
+		</property>
+		<property name="length">
+			<value>140.14004166666666</value>
+		</property>
+		<property name="looping">
+			<value>true</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{493ba24e-4d81-4d12-8cd8-d89ca98c5aec}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{62ae269b-7304-4707-b5a4-0d4593cc8b3f}">
+		<property name="volume">
+			<value>4.5</value>
+		</property>
 		<property name="name">
 			<value>Amb main</value>
 		</property>
