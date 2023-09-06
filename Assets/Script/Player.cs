@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -21,13 +22,16 @@ public class Player : MonoBehaviour
 
     private Action m_doAction;
     private Rope linkedRope; 
-    private Vector3 grabPos; 
+    private Vector3 grabPos;
+    private CapsuleCollider2D myCollider;
+    private CapsuleCollider2D teamMateCollider;
 
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         m_doAction = DoMoveOnWall;
+        myCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
 
     public void Init(PlayerInput pPlayerInput)
@@ -44,6 +48,11 @@ public class Player : MonoBehaviour
     public void LinkRope(Rope ropeTOLink)
     {
         linkedRope = ropeTOLink;
+    }
+    
+    public void SetTeamMateCollider(CapsuleCollider2D _teamMateCollider)
+    {
+        teamMateCollider = _teamMateCollider;
     }
     
     private void ResetPlayerInput()
@@ -104,6 +113,7 @@ public class Player : MonoBehaviour
             offWall = true;
             grabbing = false;
             body.gravityScale = 1;
+            Physics2D.IgnoreCollision(myCollider, teamMateCollider, true);
 
             if (linkedRope.IsInTension())
             {
@@ -116,6 +126,9 @@ public class Player : MonoBehaviour
     {
         if(ctx.performed)
         {
+            if (offWall)
+                Physics2D.IgnoreCollision(myCollider, teamMateCollider, false);
+            
             body.gravityScale = 0;
             offWall = false;
             m_doAction = DoGrab;

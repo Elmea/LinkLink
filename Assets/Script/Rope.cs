@@ -128,15 +128,21 @@ public class Rope : MonoBehaviour
         tenseScale = maximumTenseDistance - minimumTenseDistance;
 
         Player firstPlayer = firstAncor.GetComponent<Player>();
+        Player secondPlayer = secondAncor.GetComponent<Player>();
         if (firstPlayer != null)
         {
             firstPlayer.LinkRope(this);
         }
 
-        Player secondPlayer = secondAncor.GetComponent<Player>();
         if (secondPlayer != null)
         {
             secondPlayer.LinkRope(this);
+        }
+
+        if (firstPlayer != null && secondPlayer != null)
+        {
+            firstPlayer.SetTeamMateCollider(secondPlayer.GetComponentInChildren<CapsuleCollider2D>());
+            secondPlayer.SetTeamMateCollider(firstPlayer.GetComponentInChildren<CapsuleCollider2D>());
         }
     }
 

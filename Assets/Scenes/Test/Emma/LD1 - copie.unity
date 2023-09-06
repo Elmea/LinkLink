@@ -446,7 +446,7 @@ MonoBehaviour:
   segmentCount: 65
   minimumTenseDistance: 10
   maximumTenseDistance: 15
-  maximumTenseForce: 10000
+  maximumTenseForce: 100
   ancorsDistance: {x: 0, y: 0}
 --- !u!4 &518371456
 Transform:
