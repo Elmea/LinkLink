@@ -412,6 +412,10 @@ MonoBehaviour:
   secondAncor: {fileID: 1266944}
   segment: {fileID: 1481352147742548934, guid: d54b89fe82dcc404ea96840d734d4c16, type: 3}
   segmentCount: 65
+  minimumTenseDistance: 8
+  maximumTenseDistance: 12
+  maximumTenseForce: 20
+  ancorsDistance: {x: 0, y: 0}
 --- !u!4 &518371456
 Transform:
   m_ObjectHideFlags: 0
