@@ -5,6 +5,7 @@ using UnityEngine;
 public class RopeSegment : MonoBehaviour
 {
     [SerializeField] private float pullForce = 1.0f;
+    private Rope myRope;
     
     private GameObject before;
     private Rigidbody2D beforeBody;
@@ -14,6 +15,11 @@ public class RopeSegment : MonoBehaviour
 
     private bool isSettedUp = false;
 
+    public void AssignRope(Rope _rope)
+    {
+        myRope = _rope;
+    }
+    
     public void AssignNeighbor(GameObject _before, GameObject _after)
     {
         before = _before;
@@ -31,21 +37,24 @@ public class RopeSegment : MonoBehaviour
     {
         if (isSettedUp)
         {
-            Vector2 forceDirection = new Vector2(before.transform.position.x - transform.position.x ,
-                                    before.transform.position.y - transform.position.y );
-
-            beforeBody.AddForce(forceDirection * pullForce);
+            Vector2 forceDirection = new Vector2(transform.position.x - before.transform.position.x ,
+                                    transform.position.y - before.transform.position.y);
             
-            forceDirection = new Vector2(after.transform.position.x - transform.position.x ,
-                after.transform.position.y - transform.position.y );
-
-            afterBody.AddForce(forceDirection * pullForce);
+            if (forceDirection.magnitude > 0.1f)
+                beforeBody.AddForce(forceDirection * pullForce);
+            
+            forceDirection = new Vector2(transform.position.x - after.transform.position.x ,
+                transform.position.y - after.transform.position.y);
+            
+            if (forceDirection.magnitude > 0.1f)
+                afterBody.AddForce(forceDirection * pullForce);
         }
     }
     
     // Update is called once per frame
     void Update()
     {
-        PullNeighbors();
+        if (myRope.ShouldPull())
+            PullNeighbors();
     }
 }
