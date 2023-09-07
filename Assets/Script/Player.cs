@@ -199,8 +199,8 @@ public class Player : MonoBehaviour
 
         float lRatio = m_defaultSpeed * Time.fixedDeltaTime;
 
-        m_animator.SetFloat("VelX", m_velocity.x / lRatio);
-        m_animator.SetFloat("VelY", m_velocity.y / lRatio);
+        // m_animator.SetFloat("VelX", m_velocity.x / lRatio);
+        // m_animator.SetFloat("VelY", m_velocity.y / lRatio);
         m_animator.SetFloat("Velocity", m_velocity.magnitude / lRatio);
 
         if(offWall)
