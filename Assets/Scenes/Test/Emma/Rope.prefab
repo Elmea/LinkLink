@@ -50,7 +50,7 @@ MonoBehaviour:
   segmentCount: 40
   minimumTenseDistance: 7.5
   maximumTenseDistance: 15
-  maximumTenseForce: 20
-  minDistanceToPull: 1
+  maximumTenseForce: 0
+  minDistanceToPull: 0
   maximumDistanceBetweenAncor: 20
   ancorsDistance: {x: 0, y: 0}

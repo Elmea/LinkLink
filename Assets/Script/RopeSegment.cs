@@ -40,11 +40,15 @@ public class RopeSegment : MonoBehaviour
         {
             Vector2 forceDirection = new Vector2(transform.position.x - before.transform.position.x ,
                                     transform.position.y - before.transform.position.y);
-            beforeBody.AddForce(forceDirection * pullForce);
+            
+            if (forceDirection.magnitude > 0.05f)
+                beforeBody.AddForce(forceDirection * pullForce);
             
             forceDirection = new Vector2(transform.position.x - after.transform.position.x ,
                 transform.position.y - after.transform.position.y);
-            afterBody.AddForce(forceDirection * pullForce);
+            
+            if (forceDirection.magnitude > 0.05f)
+                afterBody.AddForce(forceDirection * pullForce);
         }
     }
     

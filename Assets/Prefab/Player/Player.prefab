@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0446b2e1b479e0742a14d7ee4e064a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 125
+  m_speed: 250
   m_acceleration: 20
   m_grabForce: 800
   arrow: {fileID: 9126262738636362555}
