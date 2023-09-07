@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 835190037256161443}
+  - component: {fileID: -5264600287227418232}
   - component: {fileID: 582995256392407742}
   - component: {fileID: 2422501576009590423}
   - component: {fileID: 6793009281853791346}
   - component: {fileID: 6101583124589588169}
   - component: {fileID: 4705639869062069306}
   - component: {fileID: 4043421502326962349}
-  - component: {fileID: -5264600287227418232}
   m_Layer: 3
   m_Name: Rope Segment
   m_TagString: Untagged
@@ -38,6 +38,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5264600287227418232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481352147742548934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ba199d4d276ca4e903a7be0534a357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pullForce: 10
 --- !u!33 &582995256392407742
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -121,7 +134,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2.14, y: 2.08}
+  m_Size: {x: 2, y: 4.5820637}
   m_Direction: 0
 --- !u!50 &6101583124589588169
 Rigidbody2D:
@@ -200,16 +213,3 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!114 &-5264600287227418232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481352147742548934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8ba199d4d276ca4e903a7be0534a357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pullForce: 2

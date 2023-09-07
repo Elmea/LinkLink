@@ -82,8 +82,7 @@ public class Player : MonoBehaviour
             return;
         }
         
-        m_velocity = Vector2.MoveTowards(m_velocity, m_moveInputValue * m_speed * Time.fixedDeltaTime, m_acceleration * Time.fixedDeltaTime);
-
+        m_velocity = Vector2.MoveTowards(m_velocity, m_moveInputValue * (m_speed * Time.fixedDeltaTime), m_acceleration * Time.fixedDeltaTime);
         body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
     }
 
@@ -93,8 +92,6 @@ public class Player : MonoBehaviour
         {
             offWall = false;
             m_doAction = DoMoveOnWall;
-            m_velocity = new Vector2(0 , 0);
-            body.velocity = new Vector2(0 , 0);
         }
         else
         {
@@ -135,12 +132,6 @@ public class Player : MonoBehaviour
             {
                 linkedRope.ReleaseTenseOnThisAncor(this.gameObject);
             }
-            
-/*            grabbing = false;
-            if(offWall)
-                m_doAction = DoFall;
-            else
-                m_doAction = DoMoveOnWall;*/
         }
     }
 
