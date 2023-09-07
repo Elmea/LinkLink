@@ -115,7 +115,7 @@ Transform:
   m_Children:
   - {fileID: 592835116505852994}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4920693248833867312
 MonoBehaviour:
@@ -380,6 +380,13 @@ MonoBehaviour:
   m_acceleration: 20
   m_grabForce: 250
   offWall: 0
+  m_honeySlowDownFactor: 0.5
+  m_slippingSpeed: 200
+  m_slippingAcceleration: 20
+  m_grabForceReductionOnSlip: 0.3
+  m_slippingDelay: 1
+  m_slippingDuration: 0.5
+  m_animator: {fileID: 0}
 --- !u!50 &3770277113263612878
 Rigidbody2D:
   serializedVersion: 4
@@ -393,7 +400,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
