@@ -227,6 +227,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{00dbeb89-9d86-4ca6-b2ea-2728c9c238a7}">
+		<property name="volume">
+			<value>-1.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{c5555340-b459-4c1a-8f52-95404845319c}</destination>
 		</relationship>
@@ -541,7 +544,6 @@
 		<property name="length">
 			<value>17.777777777777775</value>
 		</property>
-		<property name="name" />
 		<property name="playlistMode">
 			<value>2</value>
 		</property>
@@ -822,6 +824,9 @@
 		<property name="length">
 			<value>4.8888888888888893</value>
 		</property>
+		<property name="volume">
+			<value>-3.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{196bd799-62c0-4f69-85aa-013df3270380}</destination>
 		</relationship>
@@ -1037,6 +1042,9 @@
 		<property name="length">
 			<value>5.4444444444444446</value>
 		</property>
+		<property name="volume">
+			<value>-2.5</value>
+		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{e8863696-f02f-4453-9097-2a1630458721}</destination>
 		</relationship>
@@ -1070,6 +1078,9 @@
 	<object class="SingleSound" id="{6f4318e9-5537-40a2-8d3b-bb426dec6be0}">
 		<property name="length">
 			<value>7.7777777777777786</value>
+		</property>
+		<property name="volume">
+			<value>-3.5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{196bd799-62c0-4f69-85aa-013df3270380}</destination>
