@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "ad73ba73-824b-49dd-b4bb-3dad4a9cdf0c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Grab",
                     "type": "Button",
                     "id": "797d6170-6c77-4e07-8f20-91f2d932cc4f",
@@ -199,28 +190,6 @@
                 },
                 {
                     "name": "",
-                    "id": "022a1fed-874c-403f-b5fe-0edee82607e8",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e0550919-18fa-4b89-8895-f66d10404950",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "64651176-affe-4531-b5ed-d98ef252f4cc",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -262,6 +231,17 @@
                     "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9c7f7c17-3883-47c6-a27e-a9a79f0da7ff",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
