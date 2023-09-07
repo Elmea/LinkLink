@@ -24,6 +24,7 @@ public class Rope : MonoBehaviour
     private float tenseTimer = 0.0f;
     
     private float tensionForce;
+    private float tensionPercent;
     
     public Vector2 ancorsDistance;
 
@@ -31,6 +32,9 @@ public class Rope : MonoBehaviour
     public bool ShouldPull() { return shouldPull; }
 
     public float GetTensionForce() { return tensionForce; }
+    
+    public float GetTensionRatio() { return tensionPercent; }
+
     private Vector2 GetTensionDirAncor1()
     {
         return new Vector2(secondAncor.transform.position.x - firstAncor.transform.position.x,
@@ -165,7 +169,7 @@ public class Rope : MonoBehaviour
 
         if (tensionMag > minimumTenseDistance)  
         {
-            float tensionPercent = (tensionMag - minimumTenseDistance) / tenseScale;
+            tensionPercent = (tensionMag - minimumTenseDistance) / tenseScale;
             tensionForce = tensionPercent * maximumTenseForce; 
         }
         else

@@ -11,14 +11,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float m_speed = 125f;
     [SerializeField] private float m_acceleration = 20f;
     [SerializeField] private float m_grabForce = 40f;
+    [SerializeField] private GameObject arrow;
+    [SerializeField] private bool offWall = false;
+
     private Vector2 m_velocity;
     private Vector2 m_moveInputValue;
     private Vector2 m_position2D;
     private Rigidbody2D body;
     private PlayerInput m_playerInput;
-    [SerializeField] private bool offWall = false;
     private bool grabbing = false;
-
     private Action m_doAction;
     private Rope linkedRope; 
     private Vector3 grabPos;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         m_doAction = DoMoveOnWall;
         myCollider = GetComponentInChildren<CapsuleCollider2D>();
+        arrow.SetActive(false);
     }
 
     public void Init(PlayerInput pPlayerInput)
@@ -170,6 +172,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
+        if (linkedRope.IsInTension())
+        {
+            arrow.SetActive(true);
+            Vector2 dir = teamMateCollider.transform.position - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) + Mathf.PI;
+            
+            arrow.transform.localScale = new Vector3(linkedRope.GetTensionRatio() * 10, 1, 1);
+            arrow.transform.localPosition = new Vector3(Mathf.Cos(angle), MathF.Sin(angle)) * (1.5f + 0.1f * arrow.transform.localScale.x);
+            arrow.transform.localRotation = Quaternion.Euler( 0, 0, angle * 180 / Mathf.PI);
+        }
+        else
+        {
+            arrow.SetActive(false);
+        }
     }
 }

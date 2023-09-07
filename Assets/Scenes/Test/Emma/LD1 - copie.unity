@@ -323,6 +323,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+--- !u!1 &548223330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9126262738636362555, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+  m_PrefabInstance: {fileID: 1684826051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &702122425
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +847,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 850296053903560886, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 548223330}
     - target: {fileID: 3332240429583686837, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -889,6 +898,26 @@ PrefabInstance:
     - target: {fileID: 3505299483183199886, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
       propertyPath: m_Name
       value: Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899572609595182956, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+      propertyPath: m_Anchor.x
+      value: 0.038061142
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899572609595182956, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+      propertyPath: m_Anchor.y
+      value: 0.0568738
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899572609595182956, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 4.038061
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899572609595182956, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.0568738
+      objectReference: {fileID: 0}
+    - target: {fileID: 7899572609595182956, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+      propertyPath: m_AutoConfigureConnectedAnchor
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1071,6 +1100,14 @@ PrefabInstance:
       propertyPath: secondAncor
       value: 
       objectReference: {fileID: 1266944}
+    - target: {fileID: 649895607279528001, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
+      propertyPath: maximumTenseForce
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 649895607279528001, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
+      propertyPath: minimumTenseDistance
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4081831259385403951, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
       propertyPath: m_Name
       value: Rope
