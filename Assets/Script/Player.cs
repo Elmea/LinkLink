@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
     {
         if (offWall)
         {
-            if(m_velocity.y > Physics2D.gravity.y)
+            if(m_onGap && m_velocity.y > Physics2D.gravity.y)
             {
                 m_velocity.y = Physics2D.gravity.y;
                 body.velocity = m_velocity;
