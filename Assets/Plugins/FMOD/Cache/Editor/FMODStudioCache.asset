@@ -54,6 +54,62 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &-7803801551049852532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SD/rope_tension
+  m_EditorClassIdentifier: 
+  Path: event:/SD/rope_tension
+  Guid:
+    Data1: -807826308
+    Data2: 1234241809
+    Data3: 286966681
+    Data4: 1228111121
+  Banks:
+  - {fileID: -5549547683486741585}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -4062668680677196952}
+  - {fileID: 2559690958213545851}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 18500
+--- !u!114 &-5906517597882894992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SD/falling_object
+  m_EditorClassIdentifier: 
+  Path: event:/SD/falling_object
+  Guid:
+    Data1: -1675213505
+    Data2: 1167007929
+    Data3: 1085929859
+    Data4: -1930756439
+  Banks:
+  - {fileID: -5549547683486741585}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 44309
 --- !u!114 &-5695004004479837454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,10 +152,10 @@ MonoBehaviour:
   Path: Fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638296957497996493
+  lastModified: 638297037815468997
   FileSizes:
   - Name: Desktop
-    Value: 1612
+    Value: 1842
   Exists: 1
 --- !u!114 &-5549547683486741585
 MonoBehaviour:
@@ -116,10 +172,10 @@ MonoBehaviour:
   Path: Fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638296957497437657
+  lastModified: 638297037815408146
   FileSizes:
   - Name: Desktop
-    Value: 6223616
+    Value: 6999392
   Exists: 1
 --- !u!114 &-5245055855674882931
 MonoBehaviour:
@@ -148,6 +204,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &-4062668680677196952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/rope_tension/Ground_Air
+  m_EditorClassIdentifier: 
+  Name: Ground_Air
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1992780323
+    data2: 188932132
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Ground
+  - Air
+  Exists: 1
 --- !u!114 &-3287498973408323774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,12 +291,15 @@ MonoBehaviour:
   - {fileID: -9167323786890928957}
   - {fileID: 8439443847700162972}
   - {fileID: 4800835305115569783}
+  - {fileID: -5906517597882894992}
+  - {fileID: 6496397330501858435}
+  - {fileID: -7803801551049852532}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5549547683486741585}
   StringsBanks:
   - {fileID: -5673819773134997152}
-  cacheTime: 638296957497996493
+  cacheTime: 638297037815468997
   cacheVersion: 131607
 --- !u!114 &241272867859635102
 MonoBehaviour:
@@ -297,6 +382,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1292
+--- !u!114 &2559690958213545851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/rope_tension/Rope_Tension
+  m_EditorClassIdentifier: 
+  Name: Rope_Tension
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 648415953
+    data2: 4204150681
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &2762976871814262309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +559,33 @@ MonoBehaviour:
     Data2: 1125365784
     Data3: -948554842
     Data4: 1001042832
+  Banks:
+  - {fileID: -5549547683486741585}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &6496397330501858435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SD/inking_mouv
+  m_EditorClassIdentifier: 
+  Path: event:/SD/inking_mouv
+  Guid:
+    Data1: -768906637
+    Data2: 1144150957
+    Data3: 122483646
+    Data4: 1992517750
   Banks:
   - {fileID: -5549547683486741585}
   IsStream: 0

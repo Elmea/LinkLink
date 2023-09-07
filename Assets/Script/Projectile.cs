@@ -27,7 +27,5 @@ public class Projectile : MonoBehaviour
         {
             m_rb.velocity = new Vector2(m_rb.velocity.x, -m_speed);
         }
-
-        Debug.Log(m_rb.velocity);
     }
 }
