@@ -270,6 +270,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 850296053903560886, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+      propertyPath: offWall
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 850296053903560886, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
+      propertyPath: m_grabForce
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 3332240429583686837, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -648,8 +656,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315881689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.91, y: 12.55, z: 0.62}
-  m_LocalScale: {x: 5.4535556, y: 5.4535556, z: 5.4535556}
+  m_LocalPosition: {x: 1.42, y: 12.46, z: 0.62}
+  m_LocalScale: {x: 1.4730053, y: 1.5488099, z: 5.4535556}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1071,6 +1079,14 @@ PrefabInstance:
       propertyPath: secondAncor
       value: 
       objectReference: {fileID: 1266944}
+    - target: {fileID: 649895607279528001, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
+      propertyPath: segmentCount
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 649895607279528001, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
+      propertyPath: minDistanceToPull
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4081831259385403951, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
       propertyPath: m_Name
       value: Rope

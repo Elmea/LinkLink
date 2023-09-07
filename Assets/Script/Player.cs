@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float m_speed = 125f;
     [SerializeField] private float m_acceleration = 20f;
-    [SerializeField] private float m_airAcceleration = 5f;
     [SerializeField] private float m_grabForce = 40f;
     private Vector2 m_velocity;
     private Vector2 m_moveInputValue;
@@ -92,7 +91,18 @@ public class Player : MonoBehaviour
     private void DoGrab()
     {
         m_velocity = Vector2.MoveTowards(body.velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
-        body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+        
+        if (m_velocity.magnitude < 0.25f)
+        {
+            body.velocity = new Vector2(0, 0);
+            m_velocity = new Vector2(0, 0);
+            transform.position = grabPos;
+            offWall = false;
+        }
+        else
+        {
+            grabPos = transform.position;
+        }
     }
 
     private void DoFall()
@@ -130,7 +140,6 @@ public class Player : MonoBehaviour
                 Physics2D.IgnoreCollision(myCollider, teamMateCollider, false);
             
             body.gravityScale = 0;
-            offWall = false;
             m_doAction = DoGrab;
             grabbing = true;
             grabPos = transform.position;
@@ -161,14 +170,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (grabbing)
-        {
-            if (m_velocity.magnitude < 0.1f)
-            {
-                body.velocity = new Vector2(0, 0);
-                m_velocity = new Vector2(0, 0);
-                transform.position = grabPos;
-            }
-        }
+
     }
 }

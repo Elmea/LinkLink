@@ -10,15 +10,16 @@ public class Rope : MonoBehaviour
     [SerializeField] private float minimumTenseDistance = 8;
     [SerializeField] private float maximumTenseDistance = 12;
     [SerializeField] private float maximumTenseForce = 20;
+    [SerializeField] private float minDistanceToPull = 5;
+    [SerializeField] private float maximumDistanceBetweenAncor = 15;
 
     private List<GameObject> ropeSegments = new List<GameObject>();
     private bool firstFrame = true;
     private Vector3 positionP2Holder;
     private float tenseScale;
-    private RopeSegment firstSegment;
-    private RopeSegment lastSegment;
     private Rigidbody2D firstSegmentBody;
     private Rigidbody2D lastSegmentBody;
+    private bool shouldPull;
 
     private float tenseTimer = 0.0f;
     
@@ -27,6 +28,7 @@ public class Rope : MonoBehaviour
     public Vector2 ancorsDistance;
 
     public bool IsInTension() { return tensionForce > 0; }
+    public bool ShouldPull() { return shouldPull; }
 
     public float GetTensionForce() { return tensionForce; }
     private Vector2 GetTensionDirAncor1()
@@ -79,6 +81,7 @@ public class Rope : MonoBehaviour
         for (int i = 0; i < segmentCount; i++)
         {
             GameObject instantiated = Instantiate(segment);
+            instantiated.GetComponent<RopeSegment>().AssignRope(this);
             instantiated.transform.position = new Vector3(
                 startPos.x - firstAncor.transform.localScale.x * 0.5f - (1 + i) * instantiated.transform.localScale.x * 1.25f,
                 startPos.y,
@@ -90,7 +93,6 @@ public class Rope : MonoBehaviour
             {
                 joints[0].connectedBody = firstAncor.GetComponent<Rigidbody2D>();
                 firstAncor.GetComponent<HingeJoint2D>().connectedBody = instantiated.GetComponent<Rigidbody2D>();
-                firstSegment = ropeSegments[0].GetComponent<RopeSegment>();
                 continue;
             }
 
@@ -118,7 +120,6 @@ public class Rope : MonoBehaviour
             if (i == 0)
             {
                 ropeSegments[i].GetComponent<RopeSegment>().AssignNeighbor( firstAncor, ropeSegments[i + 1]);
-                lastSegment = ropeSegments[i].GetComponent<RopeSegment>();
                 continue;
             }
 
@@ -132,11 +133,13 @@ public class Rope : MonoBehaviour
         if (firstPlayer != null)
         {
             firstPlayer.LinkRope(this);
+            firstPlayer.GetComponent<DistanceJoint2D>().distance = maximumDistanceBetweenAncor;
         }
 
         if (secondPlayer != null)
         {
             secondPlayer.LinkRope(this);
+            firstPlayer.GetComponent<DistanceJoint2D>().distance = maximumDistanceBetweenAncor;
         }
 
         if (firstPlayer != null && secondPlayer != null)
@@ -170,6 +173,11 @@ public class Rope : MonoBehaviour
             tensionForce = 0;
         }
 
+        if (tensionMag > minDistanceToPull)
+            shouldPull = true;
+        else
+            shouldPull = false;
+        
         if (tenseTimer > 0)
             tenseTimer -= Time.deltaTime;
     }
