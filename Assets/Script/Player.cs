@@ -19,10 +19,8 @@ public class Player : MonoBehaviour
     private Vector2 m_position2D;
     private Rigidbody2D body;
     private PlayerInput m_playerInput;
-    private bool grabbing = false;
     private Action m_doAction;
     private Rope linkedRope; 
-    private Vector3 grabPos;
     private CapsuleCollider2D myCollider;
     private CapsuleCollider2D teamMateCollider;
 
@@ -30,7 +28,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        m_doAction = DoMoveOnWall;
+        m_doAction = DoFall;
         myCollider = GetComponentInChildren<CapsuleCollider2D>();
         arrow.SetActive(false);
     }
@@ -87,23 +85,20 @@ public class Player : MonoBehaviour
         m_velocity = Vector2.MoveTowards(m_velocity, m_moveInputValue * m_speed * Time.fixedDeltaTime, m_acceleration * Time.fixedDeltaTime);
 
         body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
-
     }
 
     private void DoGrab()
     {
-        m_velocity = Vector2.MoveTowards(body.velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
-        
         if (m_velocity.magnitude < 0.25f || !offWall)
         {
-            body.velocity = new Vector2(0, 0);
-            m_velocity = new Vector2(0, 0);
-            transform.position = grabPos;
             offWall = false;
+            m_doAction = DoMoveOnWall;
+            m_velocity = new Vector2(0 , 0);
+            body.velocity = new Vector2(0 , 0);
         }
         else
         {
-            grabPos = transform.position;
+            m_velocity = Vector2.MoveTowards(body.velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
         }
     }
 
@@ -120,10 +115,19 @@ public class Player : MonoBehaviour
 
     public void OnJumpInput(CallbackContext ctx)
     {
-        if (ctx.performed && !offWall)
+    }
+
+    public void OnGrabInput(CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            Physics2D.IgnoreCollision(myCollider, teamMateCollider, false);
+            body.gravityScale = 0;
+            m_doAction = DoGrab;
+        }
+        else if(ctx.canceled)
         {
             offWall = true;
-            grabbing = false;
             body.gravityScale = 1;
             Physics2D.IgnoreCollision(myCollider, teamMateCollider, true);
 
@@ -131,28 +135,12 @@ public class Player : MonoBehaviour
             {
                 linkedRope.ReleaseTenseOnThisAncor(this.gameObject);
             }
-        }
-    }
-
-    public void OnGrabInput(CallbackContext ctx)
-    {
-        if(ctx.performed)
-        {
-            if (offWall)
-                Physics2D.IgnoreCollision(myCollider, teamMateCollider, false);
             
-            body.gravityScale = 0;
-            m_doAction = DoGrab;
-            grabbing = true;
-            grabPos = transform.position;
-        }
-        else if(ctx.canceled)
-        {
-            grabbing = false;
+/*            grabbing = false;
             if(offWall)
                 m_doAction = DoFall;
             else
-                m_doAction = DoMoveOnWall;
+                m_doAction = DoMoveOnWall;*/
         }
     }
 

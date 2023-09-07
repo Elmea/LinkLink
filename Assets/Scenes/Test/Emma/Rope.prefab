@@ -48,9 +48,9 @@ MonoBehaviour:
   secondAncor: {fileID: 0}
   segment: {fileID: 1481352147742548934, guid: d54b89fe82dcc404ea96840d734d4c16, type: 3}
   segmentCount: 40
-  minimumTenseDistance: 10
+  minimumTenseDistance: 7.5
   maximumTenseDistance: 15
-  maximumTenseForce: 50
-  minDistanceToPull: 5
+  maximumTenseForce: 20
+  minDistanceToPull: 1
   maximumDistanceBetweenAncor: 20
   ancorsDistance: {x: 0, y: 0}

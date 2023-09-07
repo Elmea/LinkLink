@@ -206,22 +206,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 850296053903560886}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnJumpInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ad73ba73-824b-49dd-b4bb-3dad4a9cdf0c
-    m_ActionName: Player/Jump[/Keyboard/ctrl,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 850296053903560886}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnGrabInput
         m_Mode: 0
         m_Arguments:
@@ -379,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 125
   m_acceleration: 20
-  m_grabForce: 250
+  m_grabForce: 800
   arrow: {fileID: 9126262738636362555}
   offWall: 0
 --- !u!50 &3770277113263612878
@@ -394,7 +378,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -450,7 +434,7 @@ DistanceJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -0.86, y: 5.95}
   m_AutoConfigureDistance: 0
   m_Distance: 15
   m_MaxDistanceOnly: 1
