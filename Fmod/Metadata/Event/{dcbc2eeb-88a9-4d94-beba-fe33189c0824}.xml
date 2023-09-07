@@ -215,6 +215,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{6cea8ca3-4960-4878-98fd-c31aebf1fd09}">
+		<property name="volume">
+			<value>-4</value>
+		</property>
 		<property name="name">
 			<value>Random 1</value>
 		</property>
@@ -282,6 +285,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{cf49f9d9-68d7-4301-b36e-fea5612197fe}">
+		<property name="volume">
+			<value>-4</value>
+		</property>
 		<property name="name">
 			<value>Random 2</value>
 		</property>

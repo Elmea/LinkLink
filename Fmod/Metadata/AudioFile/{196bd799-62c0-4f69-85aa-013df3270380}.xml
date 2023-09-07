@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{196bd799-62c0-4f69-85aa-013df3270380}">
 		<property name="assetPath">
-			<value>Stem_TransiCrash01(2).ogg</value>
+			<value>Stem_TransiCrashPercs.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
