@@ -19,9 +19,13 @@ public class Player : MonoBehaviour
     [SerializeField][Range(0,1), Tooltip("Reduit la force de grab")] private float m_grabForceReductionOnSlip = 0.3f;
     [SerializeField][Tooltip("Le player glisse toutes les x sec")] private float m_slippingDelay = 1f;
     [SerializeField][Tooltip("Le player glisse pendant x sec")] private float m_slippingDuration = 0.5f;
+    [SerializeField] private float m_stunDuration = 2f;
 
     [Header("Animator")]
     [SerializeField] private Animator m_animator;
+
+    [Header("Camera")]
+    [SerializeField] private Camera m_camera;
 
 
     private float m_defaultSpeed;
@@ -64,6 +68,9 @@ public class Player : MonoBehaviour
                 offWall = true;
                 m_onGap = true;
                 break;
+            case "Projectile":
+                SetModeStun();
+                break;
             default:
                 break;
         }
@@ -90,6 +97,29 @@ public class Player : MonoBehaviour
         }
     }
 
+    private float m_stunTimer = 0f;
+    private bool m_isStun = false;
+    private void SetModeStun()
+    {
+        m_stunTimer = 0f;
+        body.gravityScale = 1;
+        offWall = true;
+        m_isStun = true;
+        m_doAction = DoStun;
+    }
+
+    private void DoStun()
+    {
+        m_stunTimer += Time.fixedDeltaTime;
+
+        if(m_stunTimer >= m_stunDuration)
+        {
+            m_isStun = false;
+            m_doAction = DoMoveOnWall;
+            m_stunTimer = 0f;
+        }
+    }
+
     private float m_slipTimer = 0f;
     private bool m_isSlipping = false;
     private void SetModeSlipOnWall()
@@ -110,7 +140,7 @@ public class Player : MonoBehaviour
 
             body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
 
-            if(m_slipTimer >= m_slippingDuration || m_isGrabbing)
+            if(m_isGrabbing)
             {
                 m_slipTimer = 0f;
                 m_isSlipping = false;
@@ -166,6 +196,12 @@ public class Player : MonoBehaviour
         m_velocity = Vector2.MoveTowards(m_velocity, m_moveInputValue * m_speed * Time.fixedDeltaTime, m_acceleration * Time.fixedDeltaTime);
 
         body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+
+        float lRatio = m_defaultSpeed * Time.fixedDeltaTime;
+
+        m_animator.SetFloat("VelX", m_velocity.x / lRatio);
+        m_animator.SetFloat("VelY", m_velocity.y / lRatio);
+        m_animator.SetFloat("Velocity", m_velocity.magnitude / lRatio);
 
         if(offWall)
             m_doAction = DoFall;
