@@ -15,6 +15,8 @@ public class PlayerConfig : MonoBehaviour
     void Start()
     {
         m_playerInput = GetComponent<PlayerInput>();
+
+        m_playerBody.Init(m_playerInput);
     }
 
     private void OnChangeteam(CallbackContext ctx)
