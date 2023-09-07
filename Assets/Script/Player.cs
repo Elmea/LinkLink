@@ -10,29 +10,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float m_speed = 125f;
     [SerializeField] private float m_acceleration = 20f;
-    [SerializeField] private float m_airAcceleration = 5f;
     [SerializeField] private float m_grabForce = 40f;
-
-    [Header("Triggers Effect")]
-    [SerializeField][Range(0, 1)] private float m_honeySlowDownFactor = 0.5f;
-    [SerializeField][Tooltip("La vitesse de glisse")] private float m_slippingSpeed = 200f;
-    [SerializeField][Tooltip("l'acceleration de la glisse")] private float m_slippingAcceleration = 20f;
-    [SerializeField][Range(0,1), Tooltip("Reduit la force de grab")] private float m_grabForceReductionOnSlip = 0.3f;
-    [SerializeField][Tooltip("Le player glisse toutes les x sec")] private float m_slippingDelay = 1f;
-    [SerializeField][Tooltip("Le player glisse pendant x sec")] private float m_slippingDuration = 0.5f;
-
-    [Header("Animator")]
-    [SerializeField] private Animator m_animator;
-
-
-    private float m_defaultSpeed;
-    private float m_defaultGrabForce;
     private Vector2 m_velocity;
     private Vector2 m_moveInputValue;
     private Vector2 m_position2D;
     private Rigidbody2D body;
     private PlayerInput m_playerInput;
-    private bool m_onGap = false;
     [SerializeField] private bool offWall = false;
     private bool grabbing = false;
 
@@ -42,95 +25,13 @@ public class Player : MonoBehaviour
     private CapsuleCollider2D myCollider;
     private CapsuleCollider2D teamMateCollider;
 
-    private Action m_doTriggerAction;
-    
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         m_doAction = DoMoveOnWall;
-        m_doTriggerAction = DoVoid;
-        m_defaultSpeed = m_speed;
-        m_defaultGrabForce = m_grabForce;
         myCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
-
- #region Triggers
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        string tag = other.gameObject.tag;
-
-        switch(tag)
-        {
-            case "SlowDown":
-                m_speed = m_defaultSpeed - m_defaultSpeed * m_honeySlowDownFactor;
-                break;
-            case "Slippery":
-                SetModeSlipOnWall();
-                break;
-            case "Gap":
-                offWall = true;
-                m_onGap = true;
-                break;
-            default:
-                break;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        string tag = other.gameObject.tag;
-
-        switch(tag)
-        {
-            case "SlowDown":
-                m_speed = m_defaultSpeed;
-                break;
-            case "Slippery":
-                m_grabForce = m_defaultGrabForce;
-                m_doTriggerAction = DoVoid;
-                break;
-            case "Gap":
-                m_onGap = false;
-                break;
-            default:
-                break;
-        }
-    }
-
-    private float m_slipTimer = 0f;
-    private bool m_isSlipping = false;
-    private void SetModeSlipOnWall()
-    {
-        m_slipTimer = 0f;
-        m_grabForce = m_defaultGrabForce - m_defaultGrabForce * m_grabForceReductionOnSlip;
-        m_isSlipping = false;
-        m_doTriggerAction = SlipOnWall;
-    }
-
-    private void SlipOnWall()
-    {
-        m_slipTimer += Time.fixedDeltaTime;
-
-        if(m_isSlipping)
-        {
-            m_velocity = Vector2.MoveTowards(m_velocity, Vector2.down * m_slippingSpeed * Time.fixedDeltaTime, m_slippingAcceleration * Time.fixedDeltaTime);
-
-            body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
-
-            if(m_isGrabbing)
-            {
-                m_slipTimer = 0f;
-                m_isSlipping = false;
-            }
-        }
-        else if(m_slipTimer >= m_slippingDelay)
-        {
-            m_isSlipping = true;
-            m_slipTimer = 0f;
-        }
-    }
-#endregion
 
     public void Init(PlayerInput pPlayerInput)
     {
@@ -167,16 +68,10 @@ public class Player : MonoBehaviour
     {
     }
 
-    public void SetOffWall()
-    {
-        offWall = true;
-    }
-
     private void FixedUpdate()
     {
         m_position2D = transform.position;
         m_doAction();
-        m_doTriggerAction();
     }
 
     private void DoMoveOnWall()
@@ -196,7 +91,18 @@ public class Player : MonoBehaviour
     private void DoGrab()
     {
         m_velocity = Vector2.MoveTowards(body.velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
-        body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+        
+        if (m_velocity.magnitude < 0.25f)
+        {
+            body.velocity = new Vector2(0, 0);
+            m_velocity = new Vector2(0, 0);
+            transform.position = grabPos;
+            offWall = false;
+        }
+        else
+        {
+            grabPos = transform.position;
+        }
     }
 
     private void DoFall()
@@ -226,17 +132,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool m_isGrabbing = false;
     public void OnGrabInput(CallbackContext ctx)
     {
-        if(ctx.performed && !m_onGap)
+        if(ctx.performed)
         {
             if (offWall)
                 Physics2D.IgnoreCollision(myCollider, teamMateCollider, false);
             
             body.gravityScale = 0;
-            m_isGrabbing = true;
-            offWall = false;
             m_doAction = DoGrab;
             grabbing = true;
             grabPos = transform.position;
@@ -267,14 +170,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (grabbing)
-        {
-            if (m_velocity.magnitude < 0.1f)
-            {
-                body.velocity = new Vector2(0, 0);
-                m_velocity = new Vector2(0, 0);
-                transform.position = grabPos;
-            }
-        }
+
     }
 }

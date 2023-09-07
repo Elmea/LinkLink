@@ -378,8 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 125
   m_acceleration: 20
-  m_airAcceleration: 5
-  m_grabForce: 40
+  m_grabForce: 250
   offWall: 0
 --- !u!50 &3770277113263612878
 Rigidbody2D:
