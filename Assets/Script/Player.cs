@@ -128,8 +128,8 @@ public class Player : MonoBehaviour
             offWall = true;
             body.gravityScale = 1;
             Physics2D.IgnoreCollision(myCollider, teamMateCollider, true);
-            m_velocity = new Vector2();
-            body.velocity = new Vector2();
+            /*m_velocity = new Vector2();
+            body.velocity = new Vector2();*/
             
             if (linkedRope.IsInTension())
             {
