@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     private float m_defaultGrabForce;
     private Vector2 m_velocity;
     private Vector2 m_moveInputValue;
-    private Vector2 m_position2D;
+    // private Vector2 m_position2D;
     private Rigidbody2D body;
     private PlayerInput m_playerInput;
     private Action m_doAction;
@@ -93,7 +94,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_position2D = transform.position;
+        // m_position2D = transform.position;
+        m_velocity = body.velocity;
         m_doAction();
         m_doTriggerAction();
     }
@@ -114,7 +116,7 @@ public class Player : MonoBehaviour
             case "Gap":
                 offWall = true;
                 m_onGap = true;
-                m_animator.SetTrigger("Fall");
+                // m_animator.SetTrigger("Fall");
                 break;
             case "Projectile":
                 Destroy(other.gameObject);
@@ -189,7 +191,8 @@ public class Player : MonoBehaviour
         {
             m_velocity = Vector2.MoveTowards(m_velocity, Vector2.down * m_slippingSpeed * Time.fixedDeltaTime, m_slippingAcceleration * Time.fixedDeltaTime);
 
-            body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+            // body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+            body.velocity = m_velocity;
 
             if(m_isGrabbing)
             {
@@ -211,12 +214,20 @@ public class Player : MonoBehaviour
     {
         if (offWall)
         {
-            m_doAction = DoFall;
+            if(m_velocity.y > Physics2D.gravity.y)
+            {
+                m_velocity.y = Physics2D.gravity.y;
+                body.velocity = m_velocity;
+            }
+
+            SetModeFall();
             return;
         }
         
         m_velocity = Vector2.MoveTowards(m_velocity, m_moveInputValue * (m_speed * Time.fixedDeltaTime), m_acceleration * Time.fixedDeltaTime);
-        body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+        
+        body.velocity = m_velocity;
+        // body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
 
         float lRatio = m_defaultSpeed * Time.fixedDeltaTime;
 
@@ -237,13 +248,21 @@ public class Player : MonoBehaviour
         // {
             m_velocity = Vector2.MoveTowards(body.velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
             
-            body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+            // body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
+            body.velocity = m_velocity;
         // }
+    }
+
+    private void SetModeFall()
+    {
+        m_animator.SetTrigger("Fall");
+        body.gravityScale = 1;
+        m_doAction = DoFall;
     }
 
     private void DoFall()
     {
-        body.gravityScale = 1;
+        m_animator.SetFloat("Velocity", Mathf.Clamp01(Mathf.Abs(m_velocity.y)/(-Physics2D.gravity.y)));
     }
 
     // Unity event called by new input system
@@ -254,6 +273,14 @@ public class Player : MonoBehaviour
 
     public void OnJumpInput(CallbackContext ctx)
     {
+        if(ctx.performed && !offWall)
+        {
+            offWall = true;
+            if (linkedRope.IsInTension())
+            {
+                linkedRope.ReleaseTenseOnThisAncor(gameObject);
+            }
+        }
     }
 
     public void OnGrabInput(CallbackContext ctx)
@@ -277,18 +304,18 @@ public class Player : MonoBehaviour
             /*m_velocity = new Vector2();
             body.velocity = new Vector2();*/
             
-            if (linkedRope.IsInTension())
-            {
-                linkedRope.ReleaseTenseOnThisAncor(this.gameObject);
-            }
+            // if (linkedRope.IsInTension())
+            // {
+            //     linkedRope.ReleaseTenseOnThisAncor(this.gameObject);
+            // }
 
             m_isGrabbing = false;
             m_animator.SetBool("Grab", false);
 
-            if(offWall)
-                m_doAction = DoFall;
-            else
+            if(!offWall)
                 m_doAction = DoMoveOnWall;
+            else
+                SetModeFall();
         }
     }
 
