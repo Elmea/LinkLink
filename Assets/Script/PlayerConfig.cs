@@ -16,6 +16,8 @@ public class PlayerConfig : MonoBehaviour
     {
         m_playerInput = GetComponent<PlayerInput>();
 
+        Debug.Log(m_playerBody == null);
+
         m_playerBody.Init(m_playerInput);
     }
 
