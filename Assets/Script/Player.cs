@@ -92,8 +92,6 @@ public class Player : MonoBehaviour
         {
             offWall = false;
             m_doAction = DoMoveOnWall;
-            m_velocity = new Vector2();
-            body.velocity = new Vector2();
         }
         else
         {
@@ -130,7 +128,9 @@ public class Player : MonoBehaviour
             offWall = true;
             body.gravityScale = 1;
             Physics2D.IgnoreCollision(myCollider, teamMateCollider, true);
-
+            m_velocity = new Vector2();
+            body.velocity = new Vector2();
+            
             if (linkedRope.IsInTension())
             {
                 linkedRope.ReleaseTenseOnThisAncor(this.gameObject);
