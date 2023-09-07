@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
     {
         m_velocity = Vector2.MoveTowards(body.velocity, Vector2.zero, m_grabForce * Time.fixedDeltaTime);
         
-        if (m_velocity.magnitude < 0.25f)
+        if (m_velocity.magnitude < 0.25f || !offWall)
         {
             body.velocity = new Vector2(0, 0);
             m_velocity = new Vector2(0, 0);
