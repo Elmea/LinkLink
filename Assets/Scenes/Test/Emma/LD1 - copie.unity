@@ -270,14 +270,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 850296053903560886, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
-      propertyPath: offWall
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 850296053903560886, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
-      propertyPath: m_grabForce
-      value: 250
-      objectReference: {fileID: 0}
     - target: {fileID: 3332240429583686837, guid: 02e3bc463c404af42a6fda75114f64ad, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1079,14 +1071,6 @@ PrefabInstance:
       propertyPath: secondAncor
       value: 
       objectReference: {fileID: 1266944}
-    - target: {fileID: 649895607279528001, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
-      propertyPath: segmentCount
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 649895607279528001, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
-      propertyPath: minDistanceToPull
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4081831259385403951, guid: bb46c2cbeaa3e214daef286e21d49f66, type: 3}
       propertyPath: m_Name
       value: Rope

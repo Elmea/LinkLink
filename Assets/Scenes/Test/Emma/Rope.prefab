@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4081831259385403951}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.46899986, y: 4.166, z: -6.306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -51,4 +51,6 @@ MonoBehaviour:
   minimumTenseDistance: 10
   maximumTenseDistance: 15
   maximumTenseForce: 50
+  minDistanceToPull: 5
+  maximumDistanceBetweenAncor: 20
   ancorsDistance: {x: 0, y: 0}
