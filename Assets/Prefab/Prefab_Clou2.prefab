@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3097479293662338255}
   - component: {fileID: 8386676900537275259}
   - component: {fileID: 8258994663168655463}
+  - component: {fileID: 8500893558142327289}
   m_Layer: 0
   m_Name: Prefab_Clou2
   m_TagString: Untagged
@@ -25,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8957933978115695602}
-  m_LocalRotation: {x: -0, y: -0.99943364, z: -0, w: 0.03365328}
+  m_LocalRotation: {x: 0, y: -0.99943364, z: 0, w: 0.03365237}
   m_LocalPosition: {x: 22.81, y: -0.266, z: -9.133}
-  m_LocalScale: {x: 18.216585, y: 18.216585, z: 18.216585}
+  m_LocalScale: {x: 42.983658, y: 44.118423, z: 46.087074}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: -176.143, z: 0}
 --- !u!33 &8386676900537275259
 MeshFilter:
@@ -83,3 +84,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!58 &8500893558142327289
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957933978115695602}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 22588.89, y: 0.0045165415}
+  serializedVersion: 2
+  m_Radius: 0.018054988
