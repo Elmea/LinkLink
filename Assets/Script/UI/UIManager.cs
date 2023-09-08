@@ -59,7 +59,7 @@ public class UIManager : MonoBehaviour
     public void OpenGameUI()
     {
         m_startMenu.SetActive(false);
-        // m_playerSelectionMenu.SetActive(false);
+        m_playerSelectionMenu.SetActive(false);
         m_gameUI.SetActive(true);
         m_creditMenu.SetActive(false);
         m_winScreen.SetActive(false);

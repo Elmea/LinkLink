@@ -1,4 +1,5 @@
 using System;
+using FMODUnity;
 using JetBrains.Annotations;
 using UnityEditor.Timeline;
 using UnityEngine;
@@ -153,6 +154,7 @@ public class Player : MonoBehaviour
                 // m_animator.SetTrigger("Fall");
                 break;
             case "Projectile":
+                RuntimeManager.PlayOneShot("event:/SFX/Player/Player_Hit");
                 Destroy(other.gameObject);
                 offWall = true;
                 break;
@@ -284,10 +286,12 @@ public class Player : MonoBehaviour
             
             // body.MovePosition(m_position2D + m_velocity * Time.fixedDeltaTime);
             body.velocity = m_velocity;
-        // }
-    }
+		    Physics2D.IgnoreCollision(myCollider, teamMateCollider, true);
 
-    private void SetModeFall()
+		// }
+	}
+
+	private void SetModeFall()
     {
         m_animator.SetTrigger("Fall");
         body.gravityScale = 1;
@@ -319,6 +323,7 @@ public class Player : MonoBehaviour
             if (linkedRope.IsInTension())
             {
                 linkedRope.ReleaseTenseOnThisAncor(gameObject);
+                Physics2D.IgnoreCollision(myCollider, teamMateCollider, false);
             }
         }
     }

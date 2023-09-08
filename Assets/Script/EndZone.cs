@@ -12,7 +12,7 @@ public class EndZone : MonoBehaviour
 
     private void Start()
     {
-        TextToShow.enabled = false;
+        //TextToShow.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,6 +21,7 @@ public class EndZone : MonoBehaviour
         if (player != null)
         {
             player.IsArrived = true;
+            UIManager.Instance.OpenWinScreen();
         }
     }
     
