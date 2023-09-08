@@ -1,7 +1,5 @@
 using System;
 using FMODUnity;
-using JetBrains.Annotations;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
