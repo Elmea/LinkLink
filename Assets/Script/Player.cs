@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
                 break;
             case "Projectile":
                 Destroy(other.gameObject);
-                SetModeStun();
+                offWall = true;
                 break;
             default:
                 break;
