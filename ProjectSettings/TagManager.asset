@@ -8,6 +8,7 @@ TagManager:
   - SlowDown
   - Slip
   - Slippery
+  - Projectile
   layers:
   - Default
   - TransparentFX
