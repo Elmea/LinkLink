@@ -6590,7 +6590,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.033333335
+  - time: 0.016666668
     functionName: PlaySound
     data: event:/SD/voice_jump
     objectReferenceParameter: {fileID: 0}
