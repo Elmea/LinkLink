@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 8182435562058611101}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_animator: {fileID: 5520130581904013968}
   m_camera: {fileID: 0}
   uiTarget: {fileID: 5568279588232056437}
+  IsArrived: 0
 --- !u!50 &4323161964819383664
 Rigidbody2D:
   serializedVersion: 4

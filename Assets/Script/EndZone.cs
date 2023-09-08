@@ -15,21 +15,23 @@ public class EndZone : MonoBehaviour
         //TextToShow.enabled = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    [ContextMenu("Test")]
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = other.GetComponent<Player>();
-        if (player != null)
+        Debug.Log("TriggerEnter");
+        Player player = other.GetComponentInParent<Player>();
+        if (other.gameObject.layer == 6)
         {
+            Debug.Log("PlayerArrived");
             player.IsArrived = true;
-            UIManager.Instance.OpenWinScreen();
         }
     }
-    
-    private void OnTriggerExit(Collider other)
+
+	public void OnTriggerExit2D(Collider2D other)
     {
-        Player player = other.GetComponent<Player>();
-        if (player != null)
-        {
+        Player player = other.GetComponentInParent<Player>();
+		if (other.gameObject.layer == 6)
+		{
             player.IsArrived = false;
         }
     }
@@ -41,17 +43,21 @@ public class EndZone : MonoBehaviour
             trackedTeam2.GetPlayers()[0].StartFalling();
             trackedTeam2.GetPlayers()[1].StartFalling();
             gameManager.EndGame();
-            TextToShow.enabled = true;
-            TextToShow.text = "Team 1 win !";
-        }
-        
-        if (trackedTeam2.GetPlayers()[0].IsArrived && trackedTeam2.GetPlayers()[1].IsArrived)
+            //TextToShow.enabled = true;
+            //TextToShow.text = "Team 1 win !";
+			UIManager.Instance.OpenWinScreen();
+
+		}
+
+		if (trackedTeam2.GetPlayers()[0].IsArrived && trackedTeam2.GetPlayers()[1].IsArrived)
         {
             trackedTeam1.GetPlayers()[0].StartFalling();
             trackedTeam1.GetPlayers()[1].StartFalling();
             gameManager.EndGame();
-            TextToShow.enabled = true;
-            TextToShow.text = "Team 2 win !";
-        }
-    }
+            //TextToShow.enabled = true;
+            //TextToShow.text = "Team 2 win !";
+			UIManager.Instance.OpenWinScreen();
+
+		}
+	}
 }
