@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
         pPlayerInput.actions.FindAction("Move").performed += OnMoveInput;
         pPlayerInput.actions.FindAction("Jump").performed += OnJumpInput;
         pPlayerInput.actions.FindAction("Grab").performed += OnGrabInput;
+        pPlayerInput.actions.FindAction("Grab").canceled += OnGrabInput;
     }
 
     public void LinkRope(Rope ropeTOLink)
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
         m_playerInput.actions.FindAction("Move").performed -= OnMoveInput;
         m_playerInput.actions.FindAction("Jump").performed -= OnJumpInput;
         m_playerInput.actions.FindAction("Grab").performed -= OnGrabInput;
+        m_playerInput.actions.FindAction("Grab").canceled -= OnGrabInput;
     }
 
     private void DoVoid()
@@ -214,11 +216,11 @@ public class Player : MonoBehaviour
     {
         if (offWall)
         {
-            if(m_onGap && m_velocity.y > Physics2D.gravity.y)
-            {
-                m_velocity.y = Physics2D.gravity.y;
-                body.velocity = m_velocity;
-            }
+            // if(m_onGap && m_velocity.y > Physics2D.gravity.y)
+            // {
+            //     m_velocity.y = Physics2D.gravity.y;
+            //     body.velocity = m_velocity;
+            // }
 
             SetModeFall();
             return;
@@ -327,6 +329,7 @@ public class Player : MonoBehaviour
         m_playerInput.actions.FindAction("Move").performed -= OnMoveInput;
         m_playerInput.actions.FindAction("Jump").performed -= OnJumpInput;
         m_playerInput.actions.FindAction("Grab").performed -= OnGrabInput;
+        m_playerInput.actions.FindAction("Grab").canceled -= OnGrabInput;
 
         Debug.Log("Player " + m_playerInput.playerIndex + " disabled");
 

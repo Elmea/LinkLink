@@ -21,6 +21,13 @@ public class PlayerConfig : MonoBehaviour
         m_playerBody.Init(m_playerInput);
     }
 
+    public void init(Player pPlayerBody, PlayerInput pPlayerInput)
+    {
+        m_playerBody = pPlayerBody;
+        m_playerInput = pPlayerInput;
+        m_playerBody.Init(m_playerInput);
+    }
+
     private void OnChangeteam(CallbackContext ctx)
     {
         int direction = ctx.ReadValue<Vector2>().x > 0 ? 1 : -1;
