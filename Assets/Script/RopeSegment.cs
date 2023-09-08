@@ -52,7 +52,7 @@ public class RopeSegment : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (myRope.ShouldPull())
             PullNeighbors();
