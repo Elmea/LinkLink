@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7394f6e3-3041-4521-afcb-cd01af3b67bd}">
+		<property name="assetPath">
+			<value>grab_mouv07.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.26024999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dbf02291-750b-45fd-9fd6-5f843243b584}</destination>
+		</relationship>
+	</object>
+</objects>

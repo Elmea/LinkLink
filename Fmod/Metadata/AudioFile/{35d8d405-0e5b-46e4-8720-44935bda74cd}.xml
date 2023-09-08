@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{35d8d405-0e5b-46e4-8720-44935bda74cd}">
+		<property name="assetPath">
+			<value>MUSICS/Piano_Layer_MainMenu(03).wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>11.244489795918367</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7c1b056f-b57e-498d-884b-b21b2a736872}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f124b955-205d-4356-a773-cb15b1c9ef9c}">
+		<property name="assetPath">
+			<value>falling_object_loop.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>50.898145833333331</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dbf02291-750b-45fd-9fd6-5f843243b584}</destination>
+		</relationship>
+	</object>
+</objects>

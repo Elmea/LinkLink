@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ce77d4af-be24-4fa6-9e7a-c70de71a6628}">
+		<property name="assetPath">
+			<value>White_noise_-20dB.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>30.015999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dbf02291-750b-45fd-9fd6-5f843243b584}</destination>
+		</relationship>
+	</object>
+</objects>

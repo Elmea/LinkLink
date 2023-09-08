@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{e9744161-92ba-4ff7-9afd-75f1c407690e}">
+		<property name="assetPath">
+			<value>Stem_Percs01.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.2222222222222223</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{dbf02291-750b-45fd-9fd6-5f843243b584}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{2387533b-716a-4ab0-97a7-9b112b4f15a7}">
+		<property name="name">
+			<value>Rope_Tension</value>
+		</property>
+		<relationship name="folder">
+			<destination>{b60cbb57-7e79-4ff7-8670-970b90bb058b}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{46e753b0-f534-49a2-a0c6-b597e96e5cee}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{46e753b0-f534-49a2-a0c6-b597e96e5cee}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
