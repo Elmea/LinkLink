@@ -1,4 +1,6 @@
 using System;
+using JetBrains.Annotations;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
@@ -26,6 +28,7 @@ public class Player : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private Camera m_camera;
+    [SerializeField] public Transform uiTarget;
 
 
     private float m_defaultSpeed;
@@ -151,7 +154,7 @@ public class Player : MonoBehaviour
                 break;
             case "Projectile":
                 Destroy(other.gameObject);
-                SetModeStun();
+                offWall = true;
                 break;
             default:
                 break;
