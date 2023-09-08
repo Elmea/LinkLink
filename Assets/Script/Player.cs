@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
 
     private bool m_isPlaying = false;
 
+    public bool IsArrived;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -71,7 +73,7 @@ public class Player : MonoBehaviour
     private void StopPlaying()
     {
         m_isPlaying = false;
-        m_doAction = DoFixOnPlace;
+        m_doAction = DoVoid;
     }
 
     public void Init(PlayerInput pPlayerInput)
@@ -126,6 +128,11 @@ public class Player : MonoBehaviour
         m_doTriggerAction();
     }
 
+    public void StartFalling()
+    {
+        offWall = true;
+    }
+    
     #region Triggers
     void OnTriggerEnter2D(Collider2D other)
     {
