@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayersManager : MonoBehaviour
 {
     [SerializeField] private Player[] m_playersBody;
+    [SerializeField] private GameObject[] m_playersUI;
 
     public void OnPlayerSpawn(PlayerInput pPlayerInput)
     {
@@ -27,5 +28,8 @@ public class PlayersManager : MonoBehaviour
         }
 
         playerConfig.init(m_playersBody[playerIndex], pPlayerInput);
+
+        m_playersUI[playerIndex].SetActive(true);
+        m_playersUI[playerIndex].GetComponent<UIFollowPlayer>().SetPlayerTransform(m_playersBody[playerIndex].uiTarget);
     }
 }
