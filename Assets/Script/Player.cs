@@ -45,16 +45,33 @@ public class Player : MonoBehaviour
     private Action m_doTriggerAction;
     private bool m_isGrabbing = false;
 
+    private bool m_isPlaying = false;
+
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        m_doAction = DoMoveOnWall;
+        m_doAction = DoFixOnPlace ;
         myCollider = GetComponentInChildren<CapsuleCollider2D>();
         m_doTriggerAction = DoVoid;
         m_defaultSpeed = m_speed;
         m_defaultGrabForce = m_grabForce;
         arrow.SetActive(false);
+
+        GameManager.Instance.OnGameStart += StartPlaying;
+        GameManager.Instance.OnGameEnd += StopPlaying;
+    }
+
+    private void StartPlaying()
+    {
+        m_isPlaying = true;
+        m_doAction = DoMoveOnWall;
+    }
+
+    private void StopPlaying()
+    {
+        m_isPlaying = false;
+        m_doAction = DoFixOnPlace;
     }
 
     public void Init(PlayerInput pPlayerInput)
@@ -64,6 +81,7 @@ public class Player : MonoBehaviour
         m_playerInput = pPlayerInput;
 
         pPlayerInput.actions.FindAction("Move").performed += OnMoveInput;
+        pPlayerInput.actions.FindAction("Move").canceled += OnMoveInput;
         pPlayerInput.actions.FindAction("Jump").performed += OnJumpInput;
         pPlayerInput.actions.FindAction("Grab").performed += OnGrabInput;
         pPlayerInput.actions.FindAction("Grab").canceled += OnGrabInput;
@@ -85,6 +103,7 @@ public class Player : MonoBehaviour
             return;
         
         m_playerInput.actions.FindAction("Move").performed -= OnMoveInput;
+        m_playerInput.actions.FindAction("Move").canceled -= OnMoveInput;
         m_playerInput.actions.FindAction("Jump").performed -= OnJumpInput;
         m_playerInput.actions.FindAction("Grab").performed -= OnGrabInput;
         m_playerInput.actions.FindAction("Grab").canceled -= OnGrabInput;
@@ -94,6 +113,11 @@ public class Player : MonoBehaviour
     {
     }
 
+    private void DoFixOnPlace()
+    {
+        body.velocity = Vector2.zero;
+        body.gravityScale = 0;
+    }
     private void FixedUpdate()
     {
         // m_position2D = transform.position;
@@ -270,11 +294,17 @@ public class Player : MonoBehaviour
     // Unity event called by new input system
     public void OnMoveInput(CallbackContext ctx)
     {
+        if(!m_isPlaying)
+            return;
+        
         m_moveInputValue = ctx.ReadValue<Vector2>();
     }
 
     public void OnJumpInput(CallbackContext ctx)
     {
+        if(!m_isPlaying)
+            return;
+
         if(ctx.performed && !offWall)
         {
             offWall = true;
@@ -287,6 +317,9 @@ public class Player : MonoBehaviour
 
     public void OnGrabInput(CallbackContext ctx)
     {
+        if(!m_isPlaying)
+            return;
+        
         if(ctx.performed && !m_onGap && !m_isStun)
         {
             m_isGrabbing = true;
@@ -327,6 +360,7 @@ public class Player : MonoBehaviour
             return;
         
         m_playerInput.actions.FindAction("Move").performed -= OnMoveInput;
+        m_playerInput.actions.FindAction("Move").canceled -= OnMoveInput;
         m_playerInput.actions.FindAction("Jump").performed -= OnJumpInput;
         m_playerInput.actions.FindAction("Grab").performed -= OnGrabInput;
         m_playerInput.actions.FindAction("Grab").canceled -= OnGrabInput;
